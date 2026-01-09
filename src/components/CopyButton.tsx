@@ -11,7 +11,7 @@ export function CopyButton({ sections }: CopyButtonProps) {
   const handleCopy = async () => {
     const markdown = sections
       .map((section) => {
-        let sectionText = `* ${section.title}\n\n`;
+        let sectionText = `* ${section.title}\n`;
         
         // カテゴリーがある場合
         if (section.categories && section.categories.length > 0) {
@@ -20,7 +20,7 @@ export function CopyButton({ sections }: CopyButtonProps) {
               const checkedItems = category.items.filter((item) => item.checked);
               const uncheckedItems = category.items.filter((item) => !item.checked);
               
-              let categoryText = `** ${category.title}\n\n`;
+              let categoryText = `** ${category.title}\n`;
               
               if (checkedItems.length > 0) {
                 categoryText += checkedItems
@@ -63,7 +63,7 @@ export function CopyButton({ sections }: CopyButtonProps) {
 
         return sectionText;
       })
-      .join('\n\n');
+      .join('\n');
 
     try {
       await navigator.clipboard.writeText(markdown);
